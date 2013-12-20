@@ -1,0 +1,496 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0038)http://www.vb-world.net/tips/tip2.html -->
+<HTML><HEAD><TITLE>VB-World - Tips - How can I close an application?</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="findwindow, win32, api, sendmessage, postmessage, close, closing applications, vb5, vb4, vb, visual basic,visual basic,vb,visual,basic,win32,vb4,vb5,vb6" 
+name=keywords>
+<META 
+content='You can use the FindWindow and PostMessage API functions to find a window and then close it. This example show how you can close down a Window with a caption of "Calculator".' 
+name=description>
+<STYLE type=text/css>.blfont {
+	COLOR: #99ccff
+}
+.redfont {
+	COLOR: #cc0033
+}
+.yllwfont {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #ffff33; FONT-FAMILY: Verdana, Arial
+}
+.bluefont {
+	FONT-SIZE: 11px; COLOR: #99ccff; FONT-FAMILY: Verdana, Arial
+}
+.navbit {
+	FONT-SIZE: 11px; FONT-FAMILY: Verdana, Geneva, Lucida, Arial
+}
+.whitefont {
+	COLOR: #000000
+}
+.blackfont {
+	COLOR: #000000
+}
+A:hover {
+	COLOR: #ff0000
+}
+A:link {
+	COLOR: #333399
+}
+</STYLE>
+
+<META content="MSHTML 5.50.4522.1800" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff 
+background="VB-World - Tips - How can I close an application_files/bground.gif" 
+topMargin=0 marginheight="0"><!-- Start Header -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width=98><A href="http://www.vb-world.net/"><IMG height=64 
+      src="VB-World - Tips - How can I close an application_files/vbworld.gif" 
+      width=90 border=0></A> <IMG height=1 
+      src="VB-World - Tips - How can I close an application_files/clear.gif" 
+      width=98></TD>
+    <TD vAlign=bottom width=6 bgColor=#003399><IMG height=6 
+      src="VB-World - Tips - How can I close an application_files/corner.gif" 
+      width=6></TD>
+    <TD width="100%">
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=center align=middle width="100%" bgColor=#003399 height=80><!-- Begin Adslot1 -->
+            <CENTER>
+            <SCRIPT language=JAVASCRIPT>
+<!-- hide from older browsers
+now = new Date();
+my_random = now.getTime();
+document.write('<a href="http://ad.doubleclick.net/jump/vpn000177.about.com/compute;svc=;site=visualbasic;chan=compute;syn=vpn000177;pos=slot1;sz=468x60;ord=' + my_random + '">');
+document.write('<img width="468" height="60" border="1" src="http://ad.doubleclick.net/ad/vpn000177.about.com/compute;svc=;site=visualbasic;chan=compute;syn=vpn000177;pos=slot1;sz=468x60;ord=' + my_random + '"></a>');
+// -->
+</SCRIPT>
+            </CENTER><!-- End Adslot1 --></TD></TR>
+        <TR>
+          <TD width="100%" bgColor=#000060 height=3><IMG height=3 
+            src="VB-World - Tips - How can I close an application_files/clear.gif" 
+            width=1 border=0></TD></TR>
+        <TR>
+          <TD width="100%" bgColor=#909790 height=1><IMG height=1 
+            src="VB-World - Tips - How can I close an application_files/clear.gif" 
+            width=1 border=0></TD></TR>
+        <TR>
+          <TD width="100%" bgColor=#d0d7d0 height=2><IMG height=2 
+            src="VB-World - Tips - How can I close an application_files/clear.gif" 
+            width=1 border=0></TD></TR></TD></TR></TBODY></TABLE></TR></TBODY></TABLE><!-- End Header --><!-- Start Content Table -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=110><!-- Start left nav bar --><FONT 
+      face="verdana, arial, helvetica" size=-1>
+      <P align=left><FONT class=yllwfont color=#ffff33><B>Topic 
+      Areas</B></FONT><BR><A href="http://www.vb-world.net/activex/"><FONT 
+      class=bluefont color=#99ccff>ActiveX</FONT></A><BR><A 
+      href="http://www.vb-world.net/api/"><FONT class=bluefont 
+      color=#99ccff>API</FONT></A><BR><A 
+      href="http://www.vb-world.net/beginning/"><FONT class=bluefont 
+      color=#99ccff>Beginning</FONT></A><BR><A 
+      href="http://www.vb-world.net/controls/"><FONT class=bluefont 
+      color=#99ccff>Controls/Forms</FONT></A><BR><A 
+      href="http://www.vb-world.net/databases/"><FONT class=bluefont 
+      color=#99ccff>Databases</FONT></A><BR><A 
+      href="http://www.vb-world.net/files/"><FONT class=bluefont 
+      color=#99ccff>File/Directory</FONT></A><BR><A 
+      href="http://www.vb-world.net/graphics/"><FONT class=bluefont 
+      color=#99ccff>Graphics</FONT></A><BR><A 
+      href="http://www.vb-world.net/internet/"><FONT class=bluefont 
+      color=#99ccff>Internet</FONT></A><BR><A 
+      href="http://www.vb-world.net/misc/"><FONT class=bluefont 
+      color=#99ccff>Miscellaneous</FONT></A><BR><A 
+      href="http://www.vb-world.net/mouse/"><FONT class=bluefont 
+      color=#99ccff>Mouse/Keyboard</FONT></A><BR><A 
+      href="http://www.vb-world.net/registry/"><FONT class=bluefont 
+      color=#99ccff>Registry</FONT></A></P>
+      <P align=left><FONT class=yllwfont 
+      color=#ffff33><B>Contents</B></FONT><BR><A 
+      href="http://www.vb-world.net/articles/"><FONT class=bluefont 
+      color=#99ccff>Articles</FONT></A><BR><A 
+      href="http://www.vb-world.net/tips/"><FONT class=bluefont 
+      color=#99ccff>Tips</FONT></A><BR><A 
+      href="http://www.vb-world.net/demos/"><FONT class=bluefont 
+      color=#99ccff>Demo Projects</FONT></A><BR><A 
+      href="http://www.vb-world.net/books/"><FONT class=bluefont 
+      color=#99ccff>Books</FONT></A><BR><A 
+      href="http://www.vb-world.net/reviews/"><FONT class=bluefont 
+      color=#99ccff>Reviews</FONT></A></P>
+      <P><FONT class=yllwfont color=#ffff33><B>Resources</B></FONT><BR><A 
+      href="http://forums.vb-world.net/?styleid=1"><FONT class=bluefont 
+      color=#99ccff>VB Forums</FONT></A><BR><A 
+      href="http://www.vb-world.net/news/"><FONT class=bluefont 
+      color=#99ccff>Tech News</FONT></A><BR><A 
+      href="http://www.vb-world.net/newsletters/"><FONT class=bluefont 
+      color=#99ccff>Newsletters</FONT></A><BR><A 
+      href="http://www.vb-world.net/php-bin/contactus.php"><FONT class=bluefont 
+      color=#99ccff>Contact Us</FONT></A><BR><A 
+      href="http://www.vb-world.net/link.html"><FONT class=bluefont 
+      color=#99ccff>Link to Us</FONT></A></P>
+      <P><FONT class=yllwfont color=#ffff33><B>Partner Sites</B></FONT><BR><A 
+      href="http://www.vbsquare.com/"><FONT class=bluefont color=#99ccff>VB 
+      Square</FONT></A><BR><A href="http://www.vbapi.com/"><FONT class=bluefont 
+      color=#99ccff>VB API</FONT></A><BR><A href="http://www.vbweb.co.uk/"><FONT 
+      class=bluefont color=#99ccff>VB Web</FONT></A></P></FONT><!-- end left nav bar --><IMG height=1 
+      src="VB-World - Tips - How can I close an application_files/clear.gif" 
+      width=110> </TD>
+    <TD width=4><IMG height=1 
+      src="VB-World - Tips - How can I close an application_files/clear.gif" 
+      width=4></TD>
+    <TD vAlign=top width="100%"><!-- Start Spacer Layer -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="100%" height=6><IMG height=6 
+            src="VB-World - Tips - How can I close an application_files/clear.gif" 
+            width=1 border=0></TD></TR></TBODY></TABLE><!-- End Spacer Layer --><!-- Start Main page content --><!-- End Header --><!-- Breadcrumb -->
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top align=left width="100%" bgColor=#99ccff><FONT 
+            face="Verdana, Arial, Helvetica" size=2><B>&nbsp;&nbsp; <A 
+            href="http://www.vb-world.net/"><FONT class=whitefont 
+            color=#ffffff>Home</FONT></A> <FONT color=#000000>&nbsp;&gt;</FONT> 
+            <A href="http://www.vb-world.net/tips/"><FONT class=whitefont 
+            color=#000000>Tips</FONT></A> </B></FONT></TD></TR></TBODY></TABLE>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR vAlign=center align=middle>
+          <TD vAlign=top align=left bgColor=#99ccff><IMG height=1 
+            src="VB-World - Tips - How can I close an application_files/clear.gif" 
+            width=1></TD>
+          <TD vAlign=top align=left width="100%"><IMG height=10 
+            src="VB-World - Tips - How can I close an application_files/bftopright.gif" 
+            width=10></TD>
+          <TD vAlign=top align=left><IMG height=1 src="" width=1></TD></TR>
+        <TR vAlign=center>
+          <TD vAlign=top><!-- Start Search box table -->
+            <TABLE height=40 cellSpacing=0 cellPadding=0 bgColor=#99ccff 
+            border=0>
+              <FORM action=http://www.vb-world.net/cgi-bin/searchredir.cgi 
+              method=get>
+              <TBODY>
+              <TR vAlign=center align=middle>
+                <TD align=middle>&nbsp;&nbsp;<INPUT maxLength=255 size=15 
+                  name=search></TD>
+                <TD align=middle>&nbsp;&nbsp;<SELECT name=whereto><OPTION 
+                    value=VBWORLD selected>All VB-World<OPTION value=VBQANDA>VB 
+                    Forums<OPTION value=GOTO>The Web</OPTION></SELECT>&nbsp;</TD>
+                <TD 
+                align=middle>&nbsp;<INPUT type=submit value=Search>&nbsp;&nbsp;</TD></TR>
+              <TR>
+                <TD align=middle colSpan=3><FONT 
+                  face="Verdana, Arial, Helvetica" size=-1><A 
+                  href="http://www.vb-world.net/beginning/vbtutorial/?pid=hp.bc.1"><FONT 
+                  class=whitefont color=#ffffff><B>Visual Basic 
+                  Tutorial</B></FONT></A> · <A 
+                  href="http://www.vb-world.net/databases/dbtutorial/?pid=hp.bc.2"><FONT 
+                  class=whitefont color=#ffffff>Learn Databases</FONT></A><BR><A 
+                  href="http://www.vb-world.net/tips/?pid=hp.bc.3"><FONT 
+                  class=whitefont color=#ffffff><B>Free Source 
+                  Code</B></FONT></A> · <A 
+                  href="http://www.vb-world.net/registry/?pid=hp.bc.4"><FONT 
+                  class=whitefont color=#ffffff>Using the Registry</FONT></A> 
+                  </FONT></TD></TR>
+              <TR>
+                <TD align=left><IMG height=10 
+                  src="VB-World - Tips - How can I close an application_files/bfbotleft.gif" 
+                  width=10></TD>
+                <TD bgColor=#99ccff><IMG height=10 
+                  src="VB-World - Tips - How can I close an application_files/clear.gif" 
+                  width=1 border=0></TD>
+                <TD align=right><IMG height=10 
+                  src="VB-World - Tips - How can I close an application_files/bfbotright.gif" 
+                  width=10></TD></TR></FORM></TBODY></TABLE><!-- End Search Box Table -->
+          <TD width="100%"></TD><!-- Start About Box -->
+          <TD vAlign=top width=240>
+            <TABLE cellSpacing=0 cellPadding=0 width=240 border=0>
+              <TBODY>
+              <TR>
+                <TD bgColor=#ff0000 colSpan=2><FONT 
+                  face="Arial, Helvetica, sans-serif" color=#ffffff 
+                  size=-1>&nbsp;<B>Search</B></FONT></TD>
+                <TD bgColor=#ff0000><FONT face="Arial, Helvetica, sans-serif" 
+                  color=#ffffff size=-1><B>Cool Links</B></FONT></TD></TR>
+              <TR align=#FF0000>
+                <FORM name=form1 
+                action=http://partners.about.com/vpn/search/searchx.htm 
+                method=get>
+                <TD width=90><A 
+                  href="http://visualbasic.about.com/mbody.htm?IAM=vpn000177_1"><IMG 
+                  height=24 
+                  src="VB-World - Tips - How can I close an application_files/logo_vpn_visualbasic.gif" 
+                  width=99 border=0><BR></A><INPUT maxLength=150 size=11 
+                  name=terms> <INPUT type=hidden value=visualbasic name=SUName> 
+                  <INPUT type=hidden value=vpn000177_2 name=IAM> </TD>
+                <TD vAlign=center width=36><BR><INPUT type=image height=20 
+                  width=20 
+                  src="VB-World - Tips - How can I close an application_files/H_go_butt_ffffff.gif" 
+                  border=0 name=Action></TD></FORM>
+                <TD width=114><A 
+                  href="http://visualbasic.about.com/gi/pages/mmail.htm?page=subscribe&amp;IAM=vpn000177_3"><FONT 
+                  face="Arial, Helvetica, sans-serif" color=#000000 size=-2>VB 
+                  Newsletter</FONT></A><BR><A 
+                  href="http://visualbasic.about.com/msubtutorialbeg.htm?IAM=vpn000177_4"><FONT 
+                  face="Arial, Helvetica, sans-serif" color=#000000 
+                  size=-2>Beginner's Tutorials</FONT></A><BR><A 
+                  href="http://visualbasic.about.com/msubtutorialint.htm?IAM=vpn000177_5"><FONT 
+                  face="Arial, Helvetica, sans-serif" color=#000000 
+                  size=-2>Intermediate Tutorials</FONT></A><BR><A 
+                  href="http://visualbasic.about.com/msubtutorialadv.htm?IAM=vpn000177_6"><FONT 
+                  face="Arial, Helvetica, sans-serif" color=#000000 
+                  size=-2>Advanced Tutorials </FONT></A><BR></TD></TR>
+              <TR vAlign=bottom>
+                <TD bgColor=#ffffff colSpan=3 height=5><IMG height=1 
+                  src="VB-World - Tips - How can I close an application_files/ff0000.gif" 
+                  width=240></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- End Breadcrumb --><!-- Start Spacer Layer
+<table border="0" cellPadding="0" cellSpacing="0" width="100%">
+<tr><td width="100%" height="4"><img src="/images/clear.gif" height="4" width="1" border="0"></td></tr>
+</table>
+
+<table border=0 cellpadding=0 cellspacing=0 width="100%"><tr align=center>
+<td bgcolor="#333333"><img src="/images/clear.gif" width=1 height=1></td>
+</tr></table>
+End Black Line -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%"><FONT face="verdana, arial, helvetica" 
+            size=-1><BR>
+            <P><FONT face="Arial, Helvetica" color=#003399 size=+1><B>How can I 
+            close an application?</B></FONT></P>
+            <P>You can use the FindWindow and PostMessage API functions to find 
+            a window and then close it. This example show how you can close down 
+            a Window with a caption of "Calculator".</P></FONT><PRE><FONT color=#00007f>Dim</FONT> winHwnd <FONT color=#00007f>As</FONT> <FONT color=#00007f>Long</FONT>
+<FONT color=#00007f>Dim</FONT> RetVal <FONT color=#00007f>As</FONT> <FONT color=#00007f>Long</FONT>
+winHwnd = FindWindow(vbNullString, "Calculator")
+<FONT color=#00007f>Debug</FONT>.<FONT color=#00007f>Print</FONT> winHwnd
+<FONT color=#00007f>If</FONT> winHwnd &lt;&gt; 0 <FONT color=#00007f>Then</FONT>
+    RetVal = PostMessage(winHwnd, WM_CLOSE, 0&amp;, 0&amp;)
+    <FONT color=#00007f>If</FONT> RetVal = 0 <FONT color=#00007f>Then</FONT>
+        MsgBox "Error posting message."
+    <FONT color=#00007f>End</FONT> <FONT color=#00007f>If</FONT>
+<FONT color=#00007f>Else</FONT>
+    MsgBox "The Calculator is not open."
+<FONT color=#00007f>End</FONT> <FONT color=#00007f>If</FONT>
+</PRE><FONT face="verdana, arial, helvetica" size=-1>
+            <P>For this code to work, you must have declared the API functions 
+            in a module in your project. You must put the following in the 
+            declarations section of the module.</P></FONT><PRE><FONT color=#00007f>Declare</FONT> <FONT color=#00007f>Function</FONT> FindWindow <FONT color=#00007f>Lib</FONT> "user32" <FONT color=#00007f>Alias</FONT> _
+"FindWindowA" (<FONT color=#00007f>ByVal</FONT> lpClassName <FONT color=#00007f>As</FONT> <FONT color=#00007f>String</FONT>, _
+<FONT color=#00007f>ByVal</FONT> lpWindowName <FONT color=#00007f>As</FONT> <FONT color=#00007f>String</FONT>) <FONT color=#00007f>As</FONT> <FONT color=#00007f>Long</FONT>
+<FONT color=#00007f>Declare</FONT> <FONT color=#00007f>Function</FONT> PostMessage <FONT color=#00007f>Lib</FONT> "user32" <FONT color=#00007f>Alias</FONT> _
+"PostMessageA" (<FONT color=#00007f>ByVal</FONT> hwnd <FONT color=#00007f>As</FONT> <FONT color=#00007f>Long</FONT>, <FONT color=#00007f>ByVal</FONT> wMsg <FONT color=#00007f>As</FONT> <FONT color=#00007f>Long</FONT>, _
+<FONT color=#00007f>ByVal</FONT> wParam <FONT color=#00007f>As</FONT> <FONT color=#00007f>Long</FONT>, lParam <FONT color=#00007f>As</FONT> <FONT color=#00007f>Any</FONT>) <FONT color=#00007f>As</FONT> <FONT color=#00007f>Long</FONT>
+<FONT color=#00007f>Public</FONT> <FONT color=#00007f>Const</FONT> WM_CLOSE = &amp;H10</PRE><FONT 
+            face="verdana, arial, helvetica" size=-1><BR>
+            <CENTER>
+            <TABLE border=0>
+              <TBODY>
+              <TR>
+                <TD><A 
+                  href="http://www.vb-world.net/php-bin/feedback.php?action=viewtopics&amp;associd=2&amp;assoctype=3"><IMG 
+                  height=31 
+                  src="VB-World - Tips - How can I close an application_files/fbicon1.gif" 
+                  width=27 border=0></A></TD>
+                <TD><A 
+                  href="http://www.vb-world.net/php-bin/feedback.php?action=viewtopics&amp;associd=2&amp;assoctype=3"><FONT 
+                  face="verdana, arial, helvetica" size=-1><A 
+                  href="http://www.vb-world.net/php-bin/feedback.php?action=viewtopics&amp;associd=2&amp;assoctype=3"><B>Question, 
+                  Query, Criticism?<BR>Post your feedback now!</A></B> 1 
+                  comments.</FONT></TD></TR></TBODY></TABLE></CENTER>
+            <P><I>Tip by <A 
+            href="http://www.vb-world.net/php-bin/authorbio.php?authorid=2&amp;associd=2&amp;assoctype=3">James 
+            Limm</A></I></P>
+            <P><FONT face="Arial, Helvetica" color=#003399 size=+1><B>Related 
+            Topics</B></FONT></P>
+            <UL>
+              <LI><A href="http://www.vb-world.net/api/">Windows 
+            API</A></LI></UL></FONT></TD>
+          <TD width=8><IMG 
+            src="VB-World - Tips - How can I close an application_files/clear.gif" 
+            width=8></TD>
+          <TD vAlign=top width=125><BR><!-- Start More Tips -->
+            <TABLE cellSpacing=0 cellPadding=0 width=125 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top width=125 bgColor=#99ccff>
+                  <CENTER><FONT face=arial,helvetica size=2><B>More Tips</B> 
+                  </FONT></CENTER></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=2 width=125 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/tips/tip1.html">How can I check 
+                  to see if my program is already running?</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/tips/tip3.html">Using the Browse 
+                  Folder Dialog Box</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/tips/tip4.html">How do I get my 
+                  application on top?</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/tips/tip5.html">How do I tell 
+                  when an app executed using SHELL is 
+              finished?</A></FONT></TD></TR></TBODY></TABLE><BR><!-- End More Tips --><!-- Start Options -->
+            <TABLE cellSpacing=0 cellPadding=2 width=125 bgColor=#99ccff 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=center width=16><IMG height=16 
+                  src="VB-World - Tips - How can I close an application_files/email_button.gif" 
+                  width=16 border=0></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/php-bin/sendtofriend.php?subject=How+can+I+close+an+application%3F">Email 
+                  this page</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=center width=16><IMG height=16 
+                  src="VB-World - Tips - How can I close an application_files/print_button.gif" 
+                  width=16 border=0></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/php-bin/printfriendly.php?tipid=2">Printer 
+                  Friendly</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=center width=16><IMG height=16 
+                  src="VB-World - Tips - How can I close an application_files/more_button.gif" 
+                  width=16 border=0></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/php-bin/authorbio.php?authorid=2&amp;associd=2&amp;assoctype=3">More 
+                  From James</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=center width=16><IMG height=16 
+                  src="VB-World - Tips - How can I close an application_files/feedback_button.gif" 
+                  width=16 border=0></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/php-bin/feedback.php?action=viewtopics&amp;associd=2&amp;assoctype=3">Post 
+                  Feedback</A></FONT></TD></TR></TBODY></TABLE><BR><!-- End Options --><!-- Start Hot Picks -->
+            <TABLE cellSpacing=0 cellPadding=0 width=125 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top width=125 bgColor=#99ccff>
+                  <CENTER><FONT face=arial,helvetica size=2><B>Hot Picks</B> 
+                  </FONT></CENTER></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=2 width=125 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/articles/legal/">Code in the 
+                  Courtroom</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/articles/atomictime/">Getting 
+                  the Internet Time</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/tips/tip61.html">How to add an 
+                  icon to the tray</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/demos/wallpaper/">Wallpaper 
+                  Changer</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://www.vb-world.net/books/learnvb6/">Learn to 
+                  Program with Visual Basic 6</A></FONT></TD></TR></TBODY></TABLE><BR><!-- End Hot Picks --><!-- Start Newsletter -->
+            <TABLE cellSpacing=0 cellPadding=2 width=125 bgColor=#99ccff 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=center width="100%">
+                  <CENTER><FONT face=arial,helvetica size=2><B>Free 
+                  Newsletter</B></FONT></CENTER></TD></TR>
+              <TR>
+                <TD vAlign=center width="100%">
+                  <TABLE cellSpacing=0 cellPadding=0 border=0>
+                    <TBODY>
+                    <TR>
+                      <TD bgColor=#99ccff>
+                        <FORM 
+                        action=http://inbound.postmastergeneral.com/cgi-bin/pmg_subscribe.pl 
+                        method=post><INPUT size=10 value="enter email" 
+                        name=email_address>&nbsp; </TD>
+                      <TD vAlign=top bgColor=#99ccff><INPUT type=hidden 
+                        value=vbworld name=list> <INPUT type=hidden 
+                        name=align_in_table:> <INPUT type=hidden 
+                        name=use_sans_serif_fonts:> <INPUT type=hidden value=1 
+                        name=deferred:> <INPUT type=hidden value=GO 
+                        name=subscribe_button_name:> <INPUT type=hidden 
+                        value=Remove name=remove_button_name:> <INPUT type=submit value=GO name=server_action:Subscribe></TD></TR></FORM></TBODY></TABLE></TD></TR></TBODY></TABLE><BR><!-- End Newsletter --><!-- Start Discuss -->
+            <TABLE cellSpacing=0 cellPadding=0 width=125 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top width=125 bgColor=#99ccff>
+                  <CENTER><FONT face=arial,helvetica size=2><B>Discuss</B> 
+                  </FONT></CENTER></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=2 width=125 border=0>
+              <TBODY>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://forums.vb-world.net/showthread.php?threadid=58776">Whoami? 
+                  Novel User Name</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://forums.vb-world.net/showthread.php?threadid=58286">Run 
+                  Program On Window Startup</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://forums.vb-world.net/showthread.php?threadid=58586">Maybe 
+                  Stupid? (excel Cells)</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://forums.vb-world.net/showthread.php?threadid=58709">Menus 
+                  (API)</A></FONT></TD></TR>
+              <TR>
+                <TD vAlign=top width=5><FONT size=-2><B>-</B></FONT></TD>
+                <TD vAlign=center><FONT class=navbit size=-1><A 
+                  href="http://forums.vb-world.net/showthread.php?threadid=58654">Avoid 
+                  Copying The Exe File</A></FONT></TD></TR></TBODY></TABLE><BR><!-- End Discuss --><IMG 
+            height=1 
+            src="VB-World - Tips - How can I close an application_files/clear.gif" 
+            width=125> 
+  <!-- End Main Page Content --></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- Begin Tracker -->
+<CENTER>
+<SCRIPT language=JAVASCRIPT>
+<!-- hide from older browsers
+now = new Date();
+my_random = now.getTime();
+// document.write('<p><img width="1" height="1" border="0" src="http://ads.vb-world.net/vbworld.gif?' + my_random + '"></p>');
+// -->
+</SCRIPT>
+</CENTER><!-- End Tracker --><!-- End Table -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top align=middle width=110><A 
+      href="http://www.vb-world.net/tips/tip2.html#top"><IMG height=21 alt=Top 
+      src="VB-World - Tips - How can I close an application_files/gototop.gif" 
+      width=23 border=0></A><BR><IMG height=1 
+      src="VB-World - Tips - How can I close an application_files/clear.gif" 
+      width=110 border=0></TD>
+    <TD width=4><IMG height=1 
+      src="VB-World - Tips - How can I close an application_files/clear.gif" 
+      width=4 border=0></TD>
+    <TD vAlign=top align=middle width="100%"><FONT 
+      face="Verdana, Arial, Helvetica" size=-2>Copyright ©1997-2000 Jelsoft 
+      Enterprises Limited. All rights reserved. <A 
+      href="http://www.vb-world.net/privacy.html">Privacy Policy</A>. 
+  </FONT></TD></TR></TBODY></TABLE></BODY></HTML>

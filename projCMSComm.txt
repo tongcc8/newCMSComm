@@ -1,0 +1,69 @@
+Project Name:	projCMSComm
+
+Date:		5/12/2000
+Update:
+
+Funciton:	
+Using Winsock to read alarm & status from CMS server, 
+and then update a Excel file for the OPC DDE Server.
+
+A. Program flow:
+--------------------------------------------------------------------------------------
+A-1. Start Sub Main
+	-variable init
+	-change working directory to the directory wher the application was executed.
+	-load frmMain
+
+A-2. fMainForm.Show
+	-Form Initialize
+		call ReadFromFile, read the ini file projCMSComm.ini
+			'read local port no, default 55555
+  			'read CMS IP Address
+  			'read time to send alarm to CMS Server
+  			'read site no
+  			'read site inital
+  			'read no of subsys
+  			'read subsys initial
+		
+		init public variable
+		init winsock
+		init Excel file
+		init DDE OPC
+		Simulate Connect Button Click
+
+	-Form Load
+
+		resumed screen size and title
+		enable event timer
+  
+A-3. Wait for Event
+--------------------------------------------------------------------------------------
+
+
+
+B. Timer Event
+--------------------------------------------------------------------------------------
+B-1.tmrTCPStatus
+	function: update TCP status bar
+	updated rate: 1 sec
+	
+B-2. tmrRelisten
+	function: re-listening the client request after disconnect
+	updated rate: 5 sec
+
+B-3. tmrUpdateExcel
+	function: update excel file
+	updated rate: 1 sec
+--------------------------------------------------------------------------------------
+
+
+C. Button Event
+--------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------
+
+
+D. Winsock Event
+--------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------
